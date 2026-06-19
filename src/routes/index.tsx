@@ -17,7 +17,7 @@ import {
   Cpu,
   Database,
   Satellite,
-  Map,
+  Map as MapIcon,
   X,
   Play,
   RotateCcw,
