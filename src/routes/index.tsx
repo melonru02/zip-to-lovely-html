@@ -343,7 +343,7 @@ function Features() {
       desc: "Tippe ein Produkt – sieh sofort, in welchem Markt und in welchem Regal es steht.",
     },
     {
-      icon: Map,
+      icon: MapIcon,
       title: "Interaktive Karte",
       desc: "Marktgrundriss mit Abteilungen, Regalen und einzelnen Sektoren – live aktualisiert.",
     },
@@ -736,7 +736,7 @@ function Tech() {
       d: "GPS zentimetergenau für präzise Standortbestimmung.",
     },
     {
-      icon: Map,
+      icon: MapIcon,
       t: "Live-Karte",
       d: "Akkurate Marktkarten & exakte Produktstandorte – sofort verfügbar.",
     },
