@@ -1,0 +1,41 @@
+# MarktMap
+
+Standalone export of the MarktMap marketing site. Built with TanStack Start (React 19 + Vite 7 + Tailwind v4).
+
+## Local development (VS Code)
+
+Requires Node.js 20+ (or Bun).
+
+```bash
+npm install        # or: bun install
+npm run dev        # starts dev server (http://localhost:8080 by default)
+npm run build      # production build → .output/
+npm run preview    # preview the production build
+```
+
+Open the project folder in VS Code, install dependencies, then run `npm run dev`.
+
+## Deploy on Vercel
+
+1. Push this folder to a Git repository (GitHub/GitLab/Bitbucket).
+2. Import the repo on https://vercel.com/new.
+3. Vercel auto-detects TanStack Start (Vite). Defaults:
+   - Build Command: `npm run build`
+   - Output Directory: `.output/public`
+4. Click **Deploy**. No environment variables required.
+
+Alternatively, use Vercel CLI:
+
+```bash
+npm i -g vercel
+vercel
+```
+
+## Project structure
+
+- `src/routes/` – file-based routes (each page = own URL)
+- `src/components/` – shared UI components
+- `src/styles.css` – Tailwind v4 entry + design tokens
+- `src/assets/` – images bundled with the build
+
+The site is fully static; no backend/database required.

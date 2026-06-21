@@ -1,0 +1,173 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-teal: var(--teal);
+  --color-teal-soft: var(--teal-soft);
+  --color-ink: var(--ink);
+  --color-mist: var(--mist);
+
+  --font-sans: "Inter", "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+  --font-display: "Inter", "SF Pro Display", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --navy-deep: oklch(0.18 0.035 230);
+  --navy: oklch(0.24 0.04 225);
+  --teal: oklch(0.86 0.16 200);
+  --teal-soft: oklch(0.93 0.08 200);
+  --ink: oklch(0.15 0.02 240);
+  --mist: oklch(0.975 0.005 230);
+
+  --background: oklch(1 0 0);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--navy-deep);
+  --primary-foreground: oklch(0.99 0.005 200);
+  --secondary: var(--mist);
+  --secondary-foreground: var(--navy-deep);
+  --muted: oklch(0.96 0.005 230);
+  --muted-foreground: oklch(0.5 0.02 240);
+  --accent: var(--teal);
+  --accent-foreground: var(--navy-deep);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.92 0.008 230);
+  --input: oklch(0.92 0.008 230);
+  --ring: var(--teal);
+
+  --gradient-hero: radial-gradient(ellipse at top right, oklch(0.35 0.08 220 / 0.9), oklch(0.15 0.04 240) 60%);
+  --gradient-accent: linear-gradient(135deg, oklch(0.86 0.16 200), oklch(0.7 0.18 220));
+  --gradient-card: linear-gradient(180deg, oklch(1 0 0), oklch(0.98 0.005 230));
+  --shadow-elegant: 0 20px 60px -20px oklch(0.18 0.035 230 / 0.25);
+  --shadow-glow: 0 0 80px -10px oklch(0.86 0.16 200 / 0.4);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  h1, h2, h3, h4 { letter-spacing: -0.02em; font-weight: 600; }
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.5rem;
+}
+
+@utility text-gradient-teal {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility surface-dark {
+  background: var(--gradient-hero);
+  color: oklch(0.99 0.005 200);
+}
+
+@utility card-elevated {
+  background: var(--gradient-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-elegant);
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: oklch(0.86 0.16 200 / 0.12);
+  color: var(--navy-deep);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid oklch(0.86 0.16 200 / 0.3);
+}
+
+@utility chip-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: oklch(1 0 0 / 0.08);
+  color: var(--teal);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid oklch(1 0 0 / 0.12);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.86 0.16 200 / 0.4); }
+  50% { box-shadow: 0 0 0 16px oklch(0.86 0.16 200 / 0); }
+}
+@keyframes grid-pan {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+.animate-fade-up { animation: fade-up 0.7s ease-out both; }
+.animate-pulse-glow { animation: pulse-glow 2.4s ease-in-out infinite; }
+
+.bg-grid {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-pan 20s linear infinite;
+}

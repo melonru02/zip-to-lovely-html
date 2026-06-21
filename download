@@ -1,0 +1,98 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Shield, AlertTriangle, Sparkles, Zap, ArrowRight } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
+
+export const Route = createFileRoute("/ueber")({
+  head: () => ({
+    meta: [
+      { title: "Über MarktMap" },
+      { name: "description", content: "Vision, Stärken und strategische Positionierung von MarktMap — dem digitalen Betriebssystem für den Einzelhandel." },
+    ],
+  }),
+  component: UeberPage,
+});
+
+const swot = [
+  {
+    icon: Shield, t: "Strengths", de: "Stärken", tone: "from-teal/20 to-transparent",
+    items: ["B2B + B2C Modell", "Skalierbare Architektur", "Nachhaltige Lösung", "Marktübergreifend einsetzbar"],
+  },
+  {
+    icon: AlertTriangle, t: "Weaknesses", de: "Schwächen", tone: "from-orange-200/30 to-transparent",
+    items: ["Hohe Anfangskosten", "Technische Komplexität", "Abhängigkeit von Hardware"],
+  },
+  {
+    icon: Sparkles, t: "Opportunities", de: "Chancen", tone: "from-teal/15 to-transparent",
+    items: ["Digitalisierung des Handels", "Europa-Expansion", "Datenanalyse als Asset", "Strategische Partnerschaften"],
+  },
+  {
+    icon: Zap, t: "Risks", de: "Risiken", tone: "from-rose-200/30 to-transparent",
+    items: ["Konkurrenz durch Tech-Player", "Datenschutz & Regulatorik", "Technologische Veränderungen"],
+  },
+];
+
+function UeberPage() {
+  return (
+    <>
+      <PageHeader
+        eyebrow="Über MarktMap"
+        title={<>Wir bauen das <span className="text-gradient-teal">Betriebssystem</span> des Einzelhandels.</>}
+        description="MarktMap ist mehr als eine App — wir machen Supermärkte zu vernetzten, datengetriebenen Räumen."
+      />
+
+      {/* SWOT */}
+      <section className="container-page py-24">
+        <span className="chip">SWOT-Analyse</span>
+        <h2 className="mt-5 text-3xl lg:text-5xl font-semibold">Strategische Positionierung.</h2>
+
+        <div className="mt-12 grid sm:grid-cols-2 gap-6">
+          {swot.map((q) => (
+            <div key={q.t} className="card-elevated p-8 relative overflow-hidden">
+              <div className={`absolute -top-20 -right-20 h-56 w-56 rounded-full blur-3xl bg-gradient-to-br ${q.tone}`} />
+              <div className="relative">
+                <div className="flex items-center justify-between">
+                  <q.icon className="h-7 w-7 text-navy-deep" />
+                  <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">{q.t}</span>
+                </div>
+                <h3 className="mt-5 text-2xl font-semibold">{q.de}</h3>
+                <ul className="mt-6 grid gap-3">
+                  {q.items.map((i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-teal mt-2 shrink-0" />
+                      <span>{i}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Vision */}
+      <section className="container-page pb-24">
+        <div className="rounded-3xl surface-dark p-10 lg:p-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid opacity-25" />
+          <div className="absolute top-1/2 -translate-y-1/2 -right-32 h-[28rem] w-[28rem] rounded-full bg-teal/20 blur-3xl" />
+          <div className="relative max-w-3xl">
+            <p className="chip-dark">Vision</p>
+            <h2 className="mt-6 text-4xl lg:text-6xl font-semibold tracking-tight leading-[1.05]">
+              „MarktMap wird das <span className="text-gradient-teal">digitale Betriebssystem</span> des Einzelhandels."
+            </h2>
+            <p className="mt-8 text-xl text-white/70">
+              Die Zukunft des Einkaufens beginnt mit einer digitalen Karte.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link to="/roi" className="inline-flex items-center gap-2 rounded-full bg-teal text-navy-deep font-semibold px-6 py-3.5">
+                ROI für Märkte entdecken <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/business" className="inline-flex items-center gap-2 rounded-full border border-white/20 text-white px-6 py-3.5 hover:bg-white/5">
+                Geschäftsmodell ansehen
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

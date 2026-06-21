@@ -1,0 +1,137 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { TrendingDown, TrendingUp, Check } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+
+export const Route = createFileRoute("/roi")({
+  head: () => ({
+    meta: [
+      { title: "ROI & Wirtschaftlichkeit – MarktMap" },
+      { name: "description", content: "Der Business Case für Supermärkte: bis zu 135.000 € Einsparung oder 200.000 € zusätzliche Kapazität pro Markt und Jahr." },
+    ],
+  }),
+  component: RoiPage,
+});
+
+function RoiPage() {
+  return (
+    <>
+      <PageHeader
+        eyebrow="ROI & Wirtschaftlichkeit"
+        title={<>Zwei Wege. <span className="text-gradient-teal">Ein Effekt.</span></>}
+        description="Ob Kostensenkung oder Wachstum — MarktMap zahlt sich in jedem Szenario aus."
+      />
+
+      {/* Scenario context */}
+      <section className="container-page pt-16">
+        <div className="rounded-2xl border border-border p-8 grid sm:grid-cols-3 gap-6">
+          <div>
+            <div className="text-xs uppercase tracking-widest text-muted-foreground">Standardmarkt</div>
+            <div className="mt-2 text-2xl font-semibold">1.000 qm</div>
+            <div className="text-sm text-muted-foreground">Verkaufsfläche</div>
+          </div>
+          <div>
+            <div className="text-xs uppercase tracking-widest text-muted-foreground">Team</div>
+            <div className="mt-2 text-2xl font-semibold">10 Mitarbeiter</div>
+            <div className="text-sm text-muted-foreground">Vollzeitäquivalent</div>
+          </div>
+          <div>
+            <div className="text-xs uppercase tracking-widest text-muted-foreground">Lohnkosten</div>
+            <div className="mt-2 text-2xl font-semibold">30.000 € / Jahr</div>
+            <div className="text-sm text-muted-foreground">Jahresgehalt</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Two scenarios */}
+      <section className="container-page py-16 grid lg:grid-cols-2 gap-6">
+        {/* Scenario A */}
+        <div className="card-elevated p-10 relative overflow-hidden">
+          <div className="absolute -top-20 -right-20 h-56 w-56 rounded-full bg-teal/15 blur-3xl" />
+          <div className="relative">
+            <div className="flex items-center gap-2">
+              <TrendingDown className="h-5 w-5 text-navy-deep" />
+              <span className="chip">Szenario A</span>
+            </div>
+            <h2 className="mt-5 text-3xl font-semibold">Die Kosten-Bremse</h2>
+            <p className="mt-2 text-muted-foreground">Ziel: Kosten reduzieren</p>
+
+            <div className="mt-8 grid gap-3">
+              <CalcRow t="40 % weniger benötigte Arbeitszeit" v="−12.000 € / MA" />
+              <CalcRow t="10 Mitarbeiter — direkte Einsparung" v="120.000 €" />
+              <CalcRow t="Weniger Out-of-Stock Verluste" v="+ 15.000 €" />
+            </div>
+
+            <div className="mt-8 rounded-2xl bg-primary text-primary-foreground p-6">
+              <div className="text-xs uppercase tracking-widest text-teal">Wirtschaftlicher Effekt p.a.</div>
+              <div className="mt-2 text-5xl font-semibold">
+                <AnimatedCounter end={135000} suffix=" €" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scenario B */}
+        <div className="card-elevated p-10 relative overflow-hidden">
+          <div className="absolute -top-20 -right-20 h-56 w-56 rounded-full bg-teal/20 blur-3xl" />
+          <div className="relative">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-navy-deep" />
+              <span className="chip">Szenario B</span>
+            </div>
+            <h2 className="mt-5 text-3xl font-semibold">Der Wachstums-Turbo</h2>
+            <p className="mt-2 text-muted-foreground">Ziel: Produktivität steigern</p>
+
+            <div className="mt-8 grid gap-3">
+              <CalcRow t="Produktivitätssteigerung" v="+ 66,7 %" />
+              <CalcRow t="10 MA = Leistung von" v="16,67 MA" />
+              <CalcRow t="Ohne zusätzliche Einstellungen" v="✓" />
+            </div>
+
+            <div className="mt-8 rounded-2xl bg-primary text-primary-foreground p-6">
+              <div className="text-xs uppercase tracking-widest text-teal">Zusätzliche Kapazität p.a.</div>
+              <div className="mt-2 text-5xl font-semibold">
+                ca. <AnimatedCounter end={200000} suffix=" €" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-page pb-24">
+        <div className="rounded-3xl surface-dark p-10 lg:p-16 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid opacity-25" />
+          <div className="relative grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <p className="chip-dark">Der Mehrwert</p>
+              <h3 className="mt-5 text-3xl lg:text-4xl font-semibold">
+                Egal welche Strategie — MarktMap liefert Wirkung.
+              </h3>
+              <p className="mt-5 text-white/70">
+                Märkte wählen zwischen Kostenoptimierung und Kapazitätsausbau —
+                das System rechnet sich in beiden Szenarien innerhalb des ersten Jahres.
+              </p>
+            </div>
+            <div className="grid gap-3">
+              {["Direkt messbare Einsparungen", "Kein Personalabbau notwendig", "Skaliert mit Marktgröße", "Wiederkehrende Effekte"].map((t) => (
+                <div key={t} className="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+                  <Check className="h-4 w-4 text-teal" />
+                  <span className="text-sm">{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function CalcRow({ t, v }: { t: string; v: string }) {
+  return (
+    <div className="flex items-center justify-between gap-4 py-3 border-b border-border last:border-0">
+      <span className="text-sm text-muted-foreground">{t}</span>
+      <span className="font-semibold tabular-nums">{v}</span>
+    </div>
+  );
+}

@@ -1,0 +1,94 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Check, Zap, Repeat, Megaphone } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
+
+export const Route = createFileRoute("/business")({
+  head: () => ({
+    meta: [
+      { title: "Business Model – MarktMap" },
+      { name: "description", content: "Skalierbares SaaS-Modell mit wiederkehrenden Einnahmen — Einrichtung, monatliche Lizenz und Produktplatzierungen." },
+    ],
+  }),
+  component: BusinessPage,
+});
+
+const tiers = [
+  {
+    icon: Zap, name: "Einmalige Einrichtung", tag: "Onboarding",
+    price: "8.000 €", unit: "Grundgebühr", extra: "+ 12 € / qm Verkaufsfläche",
+    features: ["Erstellung digitale Marktkarte", "Einrichtung System", "Technische Integration", "Schulung Mitarbeiter-Team"],
+  },
+  {
+    icon: Repeat, name: "Monatliche SaaS-Lizenz", tag: "Wiederkehrend", featured: true,
+    price: "800 €", unit: "pro Markt / Monat", extra: "+ 1,20 € / qm / Monat",
+    features: ["App-Zugang für Kunden", "Management Systeme", "Cloud Infrastruktur", "Updates & Support"],
+  },
+  {
+    icon: Megaphone, name: "Produktplatzierungen", tag: "Zusatzumsatz",
+    price: "3,99 €", unit: "pro Platzierung", extra: "für Marken & Partner",
+    features: ["Top-Position in der App-Suche", "Geo-Targeting pro Markt", "Performance-Reporting", "Aktions-Bundles"],
+  },
+];
+
+function BusinessPage() {
+  return (
+    <>
+      <PageHeader
+        eyebrow="Business Model"
+        title={<>Skalierbares Geschäftsmodell mit <span className="text-gradient-teal">wiederkehrenden Einnahmen</span>.</>}
+        description="Drei Erlösquellen — vom ersten Onboarding über die monatliche SaaS-Lizenz bis zu In-App-Platzierungen."
+      />
+
+      <section className="container-page py-24">
+        <div className="grid lg:grid-cols-3 gap-6">
+          {tiers.map((t) => (
+            <div
+              key={t.name}
+              className={`rounded-3xl p-8 border relative overflow-hidden ${
+                t.featured
+                  ? "bg-primary text-primary-foreground border-primary shadow-elegant lg:scale-[1.03]"
+                  : "card-elevated"
+              }`}
+            >
+              {t.featured && (
+                <div className="absolute top-5 right-5 chip-dark">Empfohlen</div>
+              )}
+              <t.icon className={`h-7 w-7 ${t.featured ? "text-teal" : "text-navy-deep"}`} />
+              <div className={`mt-5 text-xs uppercase tracking-widest ${t.featured ? "text-teal" : "text-muted-foreground"}`}>{t.tag}</div>
+              <h3 className="mt-2 text-xl font-semibold">{t.name}</h3>
+              <div className="mt-6">
+                <div className="text-4xl lg:text-5xl font-semibold tracking-tight">{t.price}</div>
+                <div className={`text-sm mt-1 ${t.featured ? "text-white/70" : "text-muted-foreground"}`}>{t.unit}</div>
+                <div className={`text-sm mt-2 font-medium ${t.featured ? "text-teal" : "text-navy-deep"}`}>{t.extra}</div>
+              </div>
+              <ul className="mt-8 grid gap-3">
+                {t.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm">
+                    <Check className={`h-4 w-4 mt-0.5 shrink-0 ${t.featured ? "text-teal" : "text-navy-deep"}`} />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-8 text-xs text-muted-foreground text-center">Alle Preise zzgl. MwSt. (netto).</p>
+
+        <div className="mt-20 grid lg:grid-cols-3 gap-6">
+          {[
+            { v: "82 %", l: "Wiederkehrende Einnahmen", d: "der Umsätze sind SaaS-basiert ab Jahr 2." },
+            { v: "< 6 Wo.", l: "Time-to-Live", d: "von Vertragsabschluss bis Live-Markt." },
+            { v: "200+", l: "Skalierungsziel", d: "Märkte innerhalb von 36 Monaten." },
+          ].map((s) => (
+            <div key={s.l} className="rounded-2xl border border-border p-8">
+              <div className="text-4xl font-semibold text-navy-deep">{s.v}</div>
+              <div className="mt-2 font-semibold">{s.l}</div>
+              <div className="mt-1 text-sm text-muted-foreground">{s.d}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
