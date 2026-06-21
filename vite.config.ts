@@ -12,7 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { 
       entry: "server",
-      preset: "static" // <- Hier gehört es hin, damit Nitro rein statisch baut
+      preset: "vercel" // <- Hier gehört es hin, damit Nitro rein statisch baut
     },
   },
 });
